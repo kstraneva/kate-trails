@@ -20,7 +20,7 @@ export default function App() {
       </header>
       <section className="info">
         <div>
-          <div className="sub">{peak.place} · {peak.kind} · {peak.date}</div>
+          <div className="sub">{peak.place} · {peak.kind}</div>
         </div>
         <dl>
           <div><dt>Distance</dt><dd>{miles(stats.distance)}</dd></div>
