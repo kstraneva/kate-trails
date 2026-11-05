@@ -1,6 +1,8 @@
 # Kate's Trails
 
-Siex routes rendered as rotatable 3D terrain maps: Camelback Mountain, the Enchantments, South Kaibab to Bright Angel in the Grand Canyon, Alta trail run, the Presidential Traverse, and the Dipsea.
+**[View the site →](https://kstraneva.github.io/kate-trails/)**
+
+Six routes rendered as rotatable 3D terrain maps: Camelback Mountain, the Enchantments, South Kaibab to Bright Angel in the Grand Canyon, Alta trail run, the Presidential Traverse, and the Dipsea.
 
 - Drag to pan, right-drag (or Ctrl-drag) to rotate and tilt, scroll to zoom.
 - Click the route or the elevation profile to read distance, elevation and grade at that point.
