@@ -13,6 +13,7 @@ const BASEMAPS = {
   esritopo: { label: 'Esri Topo', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', credit: 'Map © Esri, HERE, Garmin, USGS, NPS' },
   streets: { label: 'Streets', url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', credit: '© OpenStreetMap contributors' },
 };
+const toFeet = (m) => Math.round(m * 3.28084).toLocaleString();
 const LIFT = 8; // metres above the route's recorded altitude, so it isn't buried by DEM mismatch
 const MARGIN = 0.35; // how far beyond the route (as a fraction of its size) the map extends
 const MAX_ZOOM = 16;
@@ -147,14 +148,14 @@ export default function RouteSpace({ streams, mode }) {
     <div style={{ position: 'relative', height: '100%' }}>
       <div ref={parent} style={{ position: 'absolute', inset: 0, background: 'linear-gradient(#e8eef5, #fff)' }} />
       <div className="legend" style={{ bottom: 20, width: 320 }}>
-        <b>{mode === 'grade' ? 'Grade' : 'Elevation'}</b> · {Math.round(minAlt)}–{Math.round(maxAlt)} m
+        <b>{mode === 'grade' ? 'Grade' : 'Elevation'}</b> · {toFeet(minAlt)}–{toFeet(maxAlt)} ft
         <div className="bar" style={{ background: RAMP_CSS, width: '100%' }} />
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" onClick={pickProfile} style={{ cursor: 'crosshair', background: '#f6f8fa', borderRadius: 4 }}>
           <path d={profile} fill="none" stroke="#fc4c02" strokeWidth="1.5" />
           {sel != null && <line x1={px(sel)} x2={px(sel)} y1="0" y2={H} stroke="#000" strokeWidth="1" />}
         </svg>
         {sel != null ? (
-          <div>{(distance[sel] / 1000).toFixed(2)} km · {Math.round(altitude[sel])} m · grade {gradeAt(sel, altitude, distance).toFixed(1)}%</div>
+          <div>{(distance[sel] / 1609.344).toFixed(2)} mi · {toFeet(altitude[sel])} ft · grade {gradeAt(sel, altitude, distance).toFixed(1)}%</div>
         ) : <div>Click the route or the profile to inspect a point</div>}
         <div className="controls">
           {Object.entries(BASEMAPS).map(([k, b]) => (
