@@ -2,7 +2,7 @@
 html, body, #root { height: 100%; margin: 0; }
 body { font-family: 'Inter', system-ui, sans-serif; color: #1f5d34; }
 .page { display: flex; flex-direction: column; height: 100%; }
-header { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 8px 16px; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
+header { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 8px 16px; flex-wrap: wrap; }
 nav, .modes, .controls { display: flex; gap: 6px; flex-wrap: wrap; }
 .modes { margin-left: auto; }
 button { padding: 5px 12px; border: 1px solid #b7cfbf; background: #fff; color: #1f5d34; border-radius: 14px; cursor: pointer; font: inherit; font-size: 13px; }
