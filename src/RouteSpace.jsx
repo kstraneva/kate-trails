@@ -157,9 +157,9 @@ export default function RouteSpace({ streams, mode }) {
           <path d={profile} fill="none" stroke="#fc4c02" strokeWidth="1.5" />
           {sel != null && <line x1={px(sel)} x2={px(sel)} y1="0" y2={H} stroke="#000" strokeWidth="1" />}
         </svg>
-        {sel != null ? (
+        {sel != null && (
           <div className="hint">{(distance[sel] / 1609.344).toFixed(2)} mi · {toFeet(altitude[sel])} ft · grade {gradeAt(sel, altitude, distance).toFixed(1)}%</div>
-        ) : <div className="hint">Drag to rotate · scroll to zoom · click the route to inspect</div>}
+        )}
         <button className="style-toggle" aria-expanded={showStyle} onClick={() => setShowStyle(!showStyle)}>Map style {showStyle ? '▴' : '▾'}</button>
         {showStyle && (
           <>
