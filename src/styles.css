@@ -7,7 +7,7 @@ nav, .modes, .controls { display: flex; gap: 6px; flex-wrap: wrap; }
 .modes { margin-left: auto; }
 button { padding: 5px 12px; border: 1px solid #8fb09b; background: #fff; color: #1f5d34; border-radius: 14px; cursor: pointer; font: inherit; font-size: 13px; }
 button.active { background: #1f5d34; color: #fff; border-color: #1f5d34; }
-.info { display: flex; gap: 24px; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+.info { display: flex; align-items: flex-end; gap: 24px; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #eee; flex-wrap: wrap; }
 .info p { margin: 4px 0 0; color: #1f5d34; font-size: 14px; max-width: 520px; }
 .sub { color: #3f6b50; font-size: 13px; }
 dl { display: flex; gap: 20px; margin: 0; flex-wrap: wrap; }
