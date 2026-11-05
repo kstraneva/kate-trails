@@ -20,7 +20,6 @@ export default function App() {
       </header>
       <section className="info">
         <div>
-          <h2>{peak.name}</h2>
           <div className="sub">{peak.place} · {peak.kind} · {peak.date}</div>
         </div>
         <dl>

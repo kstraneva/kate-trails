@@ -25,7 +25,7 @@ export default function TrailCards({ peaks, activeSlug, onSelect }) {
       {peaks.map((p) => (
         <button key={p.slug} className={`card${p.slug === activeSlug ? ' active' : ''}`} onClick={() => onSelect(p.slug)}>
           <svg viewBox={`0 0 ${SIZE} ${SIZE}`} width={SIZE} height={SIZE} aria-hidden="true">
-            <path d={outlinePath(p.streams.latlng)} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={outlinePath(p.streams.latlng)} fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span className="card-name">{p.name}</span>
         </button>

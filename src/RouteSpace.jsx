@@ -41,6 +41,7 @@ export default function RouteSpace({ streams, mode }) {
   const [terrain, setTerrain] = useState(true);
   const [basemap, setBasemap] = useState('satellite');
   const [sel, setSel] = useState(null);
+  const [showStyle, setShowStyle] = useState(false);
   const { latlng, altitude, distance } = streams;
   const n = altitude.length;
 
@@ -147,25 +148,31 @@ export default function RouteSpace({ streams, mode }) {
   return (
     <div style={{ position: 'relative', height: '100%' }}>
       <div ref={parent} style={{ position: 'absolute', inset: 0, background: 'linear-gradient(#e8eef5, #fff)' }} />
-      <div className="legend" style={{ bottom: 20, width: 320 }}>
-        <b>{mode === 'grade' ? 'Grade' : 'Elevation'}</b> · {toFeet(minAlt)}–{toFeet(maxAlt)} ft
-        <div className="bar" style={{ background: RAMP_CSS, width: '100%' }} />
+      <div className="legend">
+        <b>Grade</b>
+        <div className="bar" style={{ background: RAMP_CSS }} />
+        <div className="bar-labels"><span>15% downhill</span><span>Flat</span><span>15% uphill</span></div>
+        <div className="profile-label"><b>Elevation</b> · {toFeet(minAlt)}–{toFeet(maxAlt)} ft</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" onClick={pickProfile} style={{ cursor: 'crosshair', background: '#f6f8fa', borderRadius: 4 }}>
           <path d={profile} fill="none" stroke="#fc4c02" strokeWidth="1.5" />
           {sel != null && <line x1={px(sel)} x2={px(sel)} y1="0" y2={H} stroke="#000" strokeWidth="1" />}
         </svg>
         {sel != null ? (
-          <div>{(distance[sel] / 1609.344).toFixed(2)} mi · {toFeet(altitude[sel])} ft · grade {gradeAt(sel, altitude, distance).toFixed(1)}%</div>
-        ) : <div>Click the route or the profile to inspect a point</div>}
-        <div className="controls">
-          {Object.entries(BASEMAPS).map(([k, b]) => (
-            <button key={k} className={basemap === k ? 'active' : ''} onClick={() => setBasemap(k)}>{b.label}</button>
-          ))}
-        </div>
-        <label><input type="checkbox" checked={terrain} onChange={(e) => setTerrain(e.target.checked)} /> Terrain</label>
-        <div style={{ color: '#4f7f61', fontSize: 10 }}>{BASEMAPS[basemap].credit} · Terrain: Mapzen/AWS</div>
-        <div style={{ color: '#4f7f61' }}>Drag to pan · right-drag (or Ctrl-drag) to rotate and tilt · scroll to zoom</div>
+          <div className="hint">{(distance[sel] / 1609.344).toFixed(2)} mi · {toFeet(altitude[sel])} ft · grade {gradeAt(sel, altitude, distance).toFixed(1)}%</div>
+        ) : <div className="hint">Drag to rotate · scroll to zoom · click the route to inspect</div>}
+        <button className="style-toggle" aria-expanded={showStyle} onClick={() => setShowStyle(!showStyle)}>Map style {showStyle ? '▴' : '▾'}</button>
+        {showStyle && (
+          <>
+            <div className="controls">
+              {Object.entries(BASEMAPS).map(([k, b]) => (
+                <button key={k} className={basemap === k ? 'active' : ''} onClick={() => setBasemap(k)}>{b.label}</button>
+              ))}
+            </div>
+            <label><input type="checkbox" checked={terrain} onChange={(e) => setTerrain(e.target.checked)} /> Terrain</label>
+          </>
+        )}
       </div>
+      <div className="attribution">{BASEMAPS[basemap].credit} · Terrain: Mapzen/AWS</div>
     </div>
   );
 }
