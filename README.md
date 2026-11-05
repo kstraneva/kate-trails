@@ -1,4 +1,4 @@
-# Kate's Peaks
+# Kate's Trails
 
 Four routes rendered as rotatable 3D terrain maps: Camelback Mountain (trail run), the Enchantments (hike), South Kaibab to Bright Angel in the Grand Canyon (hike), and an evening trail run in the Wasatch.
 

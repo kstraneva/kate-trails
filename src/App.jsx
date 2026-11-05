@@ -9,30 +9,23 @@ export default function App() {
   const fromHash = () => PEAKS.find((p) => p.slug === window.location.hash.slice(1))?.slug || PEAKS[0].slug;
   const [slug, setSlugState] = useState(fromHash);
   const setSlug = (s) => { window.location.hash = s; setSlugState(s); };
-  const [mode, setMode] = useState('elevation');
   const peak = PEAKS.find((p) => p.slug === slug);
   const { stats } = peak;
 
   return (
     <div className="page">
       <header>
-        <h1>Kate's Peaks</h1>
+        <h1>Kate's Trails</h1>
         <nav>
           {PEAKS.map((p) => (
             <button key={p.slug} className={p.slug === slug ? 'active' : ''} onClick={() => setSlug(p.slug)}>{p.name}</button>
           ))}
         </nav>
-        <div className="modes">
-          {['elevation', 'grade'].map((m) => (
-            <button key={m} className={mode === m ? 'active' : ''} onClick={() => setMode(m)}>Color by {m}</button>
-          ))}
-        </div>
       </header>
       <section className="info">
         <div>
           <h2>{peak.name}</h2>
           <div className="sub">{peak.place} · {peak.kind} · {peak.date}</div>
-          <p>{peak.note}</p>
         </div>
         <dl>
           <div><dt>Distance</dt><dd>{km(stats.distance)}</dd></div>
@@ -42,7 +35,7 @@ export default function App() {
         </dl>
       </section>
       <main>
-        <RouteSpace key={peak.slug} streams={peak.streams} mode={mode} />
+        <RouteSpace key={peak.slug} streams={peak.streams} mode="grade" />
       </main>
     </div>
   );

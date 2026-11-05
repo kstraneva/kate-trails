@@ -3,14 +3,10 @@ import { elevationStats } from './stats.js';
 const files = import.meta.glob('./data/*.json', { eager: true, import: 'default' });
 
 const META = [
-  { slug: 'camelback', name: 'Camelback Mountain', place: 'Phoenix, Arizona', date: '2025-04-25', kind: 'Trail run',
-    note: 'A trail run up and over the mountain in the Phoenix desert.' },
-  { slug: 'enchantments', name: 'The Enchantments', place: 'Alpine Lakes Wilderness, Washington', date: '2020-07-11', kind: 'Hike',
-    note: 'A point-to-point day through the high alpine lakes basin, ending far below where it began.' },
-  { slug: 'grand-canyon', name: 'South Kaibab to Bright Angel', place: 'Grand Canyon, Arizona', date: '2020-12-23', kind: 'Hike',
-    note: 'Down to the Colorado River on South Kaibab, then back up Bright Angel to the South Rim.' },
-  { slug: 'utah-trail-run', name: 'Wasatch Evening Run', place: 'Alta, Utah', date: '2025-07-09', kind: 'Trail run',
-    note: 'An evening trail run in the Wasatch, topping out above 3,200 m.' },
+  { slug: 'camelback', name: 'Camelback', place: 'Phoenix, Arizona', date: '2025-04-25', kind: 'Trail run' },
+  { slug: 'enchantments', name: 'The Enchantments', place: 'Alpine Lakes Wilderness, Washington', date: '2020-07-11', kind: 'Hike' },
+  { slug: 'grand-canyon', name: 'Grand Canyon', place: 'Grand Canyon, Arizona', date: '2020-12-23', kind: 'Hike' },
+  { slug: 'utah-trail-run', name: 'Little Cottonwood', place: 'Alta, Utah', date: '2025-07-09', kind: 'Trail run' },
 ];
 
 export const PEAKS = META.map((m) => {
