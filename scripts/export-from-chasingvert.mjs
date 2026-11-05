@@ -1,7 +1,7 @@
 // One-off export: pulls elevation data for the featured activities from a locally running
 // chasingVert server (http://localhost:3001) and writes slim JSON files into src/data.
 // Only position, altitude and distance are kept; no names, dates, or other Strava fields.
-//   node scripts/export-from-chasingvert.mjs
+//   node scripts/export-from-chasingvert.mjs [slug ...]   (no slugs = export all)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,13 +16,16 @@ const PEAKS = {
   enchantments: 3748583521,
   'grand-canyon': 4509996191,
   'utah-trail-run': 15064020348,
+  'presidential-traverse': 15324237207,
 };
 
 const round = (v, d) => Number(v.toFixed(d));
 const thin = (arr, keep) => arr.filter((_, i) => keep.has(i));
 
 fs.mkdirSync(OUT, { recursive: true });
+const only = process.argv.slice(2);
 for (const [slug, id] of Object.entries(PEAKS)) {
+  if (only.length && !only.includes(slug)) continue;
   const res = await fetch(`${BASE}/api/activities/${id}/streams`);
   if (!res.ok) { console.error(`${slug}: HTTP ${res.status}`); process.exitCode = 1; continue; }
   const s = await res.json();
