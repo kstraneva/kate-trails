@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const SIZE = 80;
 const PAD = 6;
@@ -20,8 +20,13 @@ function outlinePath(latlng) {
 }
 
 export default function TrailCards({ peaks, activeSlug, onSelect }) {
+  const nav = useRef(null);
+  useEffect(() => {
+    nav.current?.querySelector('.active')?.scrollIntoView({ inline: 'center', block: 'nearest' });
+  }, [activeSlug]);
+
   return (
-    <nav className="cards">
+    <nav className="cards" ref={nav}>
       {peaks.map((p) => (
         <button key={p.slug} className={`card${p.slug === activeSlug ? ' active' : ''}`} onClick={() => onSelect(p.slug)}>
           <svg viewBox={`0 0 ${SIZE} ${SIZE}`} width={SIZE} height={SIZE} aria-hidden="true">

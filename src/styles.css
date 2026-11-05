@@ -22,10 +22,11 @@ button.active:hover { background: #1f5d34; }
 button:focus-visible { outline: 2px solid #1f5d34; outline-offset: 2px; }
 @media (max-width: 560px) {
   header { padding: 8px; }
-  nav.cards { width: 100%; flex-wrap: nowrap; gap: 6px; }
-  button.card { flex: 1 1 0; min-width: 0; padding: 6px 4px; }
-  button.card svg { width: 100%; max-width: 64px; height: auto; }
-  button.card .card-name { font-size: 11px; text-align: center; }
+  nav.cards { width: 100%; justify-content: flex-start; flex-wrap: nowrap; gap: 6px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; padding-bottom: 2px; }
+  nav.cards::-webkit-scrollbar { display: none; }
+  button.card { flex: 0 0 auto; min-width: 74px; padding: 5px 6px; border-radius: 10px; scroll-snap-align: center; }
+  button.card svg { width: 44px; height: 44px; }
+  button.card .card-name { font-size: 10px; line-height: 1.15; text-align: center; white-space: nowrap; }
   .info { gap: 12px; padding: 10px 12px; }
 }
 .legend { position: absolute; z-index: 10; bottom: 20px; right: 12px; width: 300px; max-width: calc(100vw - 24px); background: #fff; padding: 8px 10px; border-radius: 6px; font-size: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
