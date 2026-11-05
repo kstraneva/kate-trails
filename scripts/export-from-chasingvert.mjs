@@ -17,6 +17,7 @@ const PEAKS = {
   'grand-canyon': 4509996191,
   'utah-trail-run': 15064020348,
   'presidential-traverse': 15324237207,
+  'dipsea-race': 18920676857,
 };
 
 const round = (v, d) => Number(v.toFixed(d));
