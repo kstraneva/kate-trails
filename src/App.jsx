@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PEAKS } from './peaks.js';
 import RouteSpace from './RouteSpace.jsx';
+import TrailCards from './TrailCards.jsx';
 
 const km = (m) => `${(m / 1000).toFixed(1)} km · ${(m / 1609.344).toFixed(1)} mi`;
 const metres = (m) => `${Math.round(m).toLocaleString()} m · ${Math.round(m * 3.28084).toLocaleString()} ft`;
@@ -16,11 +17,7 @@ export default function App() {
     <div className="page">
       <header>
         <h1>Kate's Trails</h1>
-        <nav>
-          {PEAKS.map((p) => (
-            <button key={p.slug} className={p.slug === slug ? 'active' : ''} onClick={() => setSlug(p.slug)}>{p.name}</button>
-          ))}
-        </nav>
+        <TrailCards peaks={PEAKS} activeSlug={slug} onSelect={setSlug} />
       </header>
       <section className="info">
         <div>

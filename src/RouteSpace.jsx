@@ -162,8 +162,8 @@ export default function RouteSpace({ streams, mode }) {
           ))}
         </div>
         <label><input type="checkbox" checked={terrain} onChange={(e) => setTerrain(e.target.checked)} /> Terrain</label>
-        <div style={{ color: '#666', fontSize: 10 }}>{BASEMAPS[basemap].credit} · Terrain: Mapzen/AWS</div>
-        <div style={{ color: '#666' }}>Drag to pan · right-drag (or Ctrl-drag) to rotate and tilt · scroll to zoom</div>
+        <div style={{ color: '#4f7f61', fontSize: 10 }}>{BASEMAPS[basemap].credit} · Terrain: Mapzen/AWS</div>
+        <div style={{ color: '#4f7f61' }}>Drag to pan · right-drag (or Ctrl-drag) to rotate and tilt · scroll to zoom</div>
       </div>
     </div>
   );
