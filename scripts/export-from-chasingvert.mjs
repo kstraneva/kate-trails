@@ -20,6 +20,9 @@ const PEAKS = {
   'dipsea-race': 18920676857,
 };
 
+// slug -> [from, to] in metres along the original track; drops the road lead-up and return so only the trail remains.
+const TRIM = { camelback: [1280, 5270] };
+
 const round = (v, d) => Number(v.toFixed(d));
 const thin = (arr, keep) => arr.filter((_, i) => keep.has(i));
 
@@ -40,6 +43,13 @@ for (const [slug, id] of Object.entries(PEAKS)) {
     altitude: thin(s.altitude, keep).map((v) => round(v, 1)),
     distance: thin(s.distance, keep).map((v) => round(v, 1)),
   };
+  if (TRIM[slug]) {
+    const [from, to] = TRIM[slug];
+    const keepTrim = out.distance.map((d, i) => (d >= from && d <= to ? i : -1)).filter((i) => i >= 0);
+    const base = out.distance[keepTrim[0]];
+    for (const key of ['latlng', 'altitude', 'distance']) out[key] = keepTrim.map((i) => out[key][i]);
+    out.distance = out.distance.map((d) => round(d - base, 1));
+  }
   fs.writeFileSync(path.join(OUT, `${slug}.json`), JSON.stringify(out));
   console.log(`${slug}: ${n} -> ${out.latlng.length} points`);
 }
